@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "usernamehw.errorlens",
+    "alexkrechik.cucumberautocomplete",
+    "Gruntfuggly.todo-tree",
+    "EditorConfig.EditorConfig"
+  ]
+}

@@ -1,0 +1,69 @@
+parameters:
+  - name: zephyrReporter
+    displayName: "Reportar execução dos testes no zephyr"
+    type: string
+    default: "true"
+    values:
+    - "true"
+    - "false"
+
+  - name: cycle
+    displayName: "Informe a chave do ciclo de testes do zephyr ou envie o valor 'false' para executar fora do ciclo de teste"
+    type: string
+    default: "DENGWTNG-C10"
+
+  - name: spec
+    displayName: "Informa as Specs a serem executadas (não esquecendo de incluir --spec antes do caminho dos arquivos de teste Ex.: '--spec cypress\\e2e\\Autenticacao\\Login.cy.ts') ou deixe em branco para executar tudo" 
+    type: string
+    default: " "
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+      - hotfix/**
+  paths:
+    exclude:
+      - README.md
+
+pr:
+  branches:
+    include:
+      - main
+      - develop
+
+pool:
+  name: TAUT
+
+jobs:
+- job: RunningTests
+  displayName: 'Executando testes com Cypress'
+  pool:
+    name: TAUT    
+    demands:
+      - Agent.Name -equals GOISRVAPLTST0262
+  condition: always()
+
+  steps:
+    - checkout: self
+      clean: false
+
+    - script: |
+        cd NG-API/
+        echo "Diretório atual: $(System.DefaultWorkingDirectory)"   
+        yarn
+      displayName: 'Instalando dependências'
+
+    - script: |
+        cd NG-API/
+        echo "Diretório atual: $(System/.DefaultWorkingDirectory)"
+        npx cypress run --env "reporterZephyr=${{ parameters.zephyrReporter }},keyCycleZephyr=${{ parameters.cycle }}" ${{ parameters.spec }}
+      displayName: 'Executando testes com Cypress'   
+
+    - task: PublishTestResults@2
+      displayName: 'Publicar resultados de testes'
+      condition: always()
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/combined-report.xml'

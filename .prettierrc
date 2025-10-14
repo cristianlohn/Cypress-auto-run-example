@@ -1,0 +1,10 @@
+{
+  "tabWidth": 2,
+  "semicolons": true,
+  "quotes": true,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "printWidth": 400,
+  "endOfLine": "auto"
+}

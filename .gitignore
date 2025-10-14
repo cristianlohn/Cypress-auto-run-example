@@ -1,0 +1,23 @@
+#Cypress Ignore
+mochawesome-report/*
+cypress/screenshots/*
+cypress/videos/*
+cypress/downloads/*
+cypress/reports/*
+cypress/results/*
+cypress/fixtures/example.json
+
+# Dependency directories
+node_modules/
+jspm_packages/
+package-lock.json
+yarn.lock
+dist/*
+
+# System Files
+.DS_Store
+.idea
+.dist
+
+#logs
+logs/*
