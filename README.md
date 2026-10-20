@@ -1,3 +1,55 @@
+# Cypress API Automation Example
+
+**[English](#english) · [Português](#português)**
+
+## English
+
+An API test automation template using **Cypress and TypeScript**, with separate service and test logic layers, reporting tools and Azure DevOps pipeline configuration.
+
+[Back to portfolio](https://github.com/cristianlohn)
+
+### Tools
+
+Cypress, TypeScript, Mochawesome, JUnit Reporter, ESLint, Prettier and CypressReportZephyr.
+
+### Prerequisites
+
+- Git and Node.js.
+- Access to the API environment required by your scenarios.
+- A database and Oracle Client when your chosen scenarios require Oracle connectivity.
+
+### Set up a project from the template
+
+1. Clone this repository to your computer.
+2. Open the project folder in a Windows command prompt.
+3. Review and run `setup.cmd`.
+4. Enter a project name and optionally an SSH remote repository URL.
+5. Review the generated configuration before executing tests.
+
+The setup script is intended to create the project structure, initialize Git, optionally configure a remote and install dependencies. Review it before use because it modifies local project files and Git configuration.
+
+Configure the target API environment in `cypress.config.ts` and provide the database settings required by your scenarios. Keep credentials out of committed files.
+
+### Structure
+
+| Path | Purpose |
+| --- | --- |
+| `cypress/e2e` | Test scenarios in `.cy.ts` files |
+| `cypress/support/services` | API communication |
+| `cypress/support/logic` | Reusable test logic |
+| `cypress/support/commands.ts` | Support commands |
+| `azure-pipelines.yml` | Azure DevOps pipeline configuration |
+
+### Development conventions
+
+Use descriptive scenario names, camelCase for methods and variables, and PascalCase for classes. Keep reusable operations in support layers, prepare reliable test data and avoid dependencies on manual actions. Use ESLint and Prettier for consistent formatting.
+
+This repository is a template/example. API access, database configuration, reporting integrations and pipeline execution depend on your own environment.
+
+---
+
+## Português
+
 <h1 align="center">TAUT_CypressAPI_Template</h1>
 
 ### Descrição do projeto
